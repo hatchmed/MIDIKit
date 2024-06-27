@@ -15,15 +15,15 @@ import Foundation
 /// A 25-bit unsigned integer value type used in `MIDIKit`.
 public struct UInt25: MIDIUnsignedInteger, _MIDIUnsignedInteger {
     public typealias Storage = UInt32
-    var storage: Storage
+  public var storage: Storage
 }
 
 // MARK: - MIDIUnsignedInteger
 
 extension UInt25 {
-    static let integerName: StaticString = "UInt25"
-    
-    init(unchecked value: Storage) {
+  public static let integerName: StaticString = "UInt25"
+
+  public init(unchecked value: Storage) {
         storage = value
     }
 }
@@ -145,15 +145,15 @@ extension UInt25 { //: CustomStringConvertible, CustomDebugStringConvertible {
 // MARK: - _MIDIUnsignedInteger Default Implementation
 
 extension UInt25 {
-    static func min<T: BinaryInteger>(as ofType: T.Type) -> T { 0 }
-    static func min<T: BinaryFloatingPoint>(as ofType: T.Type) -> T { 0 }
-    
-    static func max<T: BinaryInteger>(as ofType: T.Type) -> T {
+    public static func min<T: BinaryInteger>(as ofType: T.Type) -> T { 0 }
+    public static func min<T: BinaryFloatingPoint>(as ofType: T.Type) -> T { 0 }
+
+    public static func max<T: BinaryInteger>(as ofType: T.Type) -> T {
         (0 ..< bitWidth)
             .reduce(into: T()) { $0 |= (0b1 << $1) }
     }
     
-    static func max<T: BinaryFloatingPoint>(as ofType: T.Type) -> T {
+    public static func max<T: BinaryFloatingPoint>(as ofType: T.Type) -> T {
         T(max(as: Int.self))
     }
 }

@@ -17,15 +17,15 @@ import Foundation
 /// Formed as from two bytes (MSB, LSB) as `(MSB << 7) + LSB` where MSB and LSB are 7-bit values.
 public struct UInt14: MIDIUnsignedInteger, _MIDIUnsignedInteger {
     public typealias Storage = UInt16
-    var storage: Storage
+    public var storage: Storage
 }
 
 // MARK: - MIDIUnsignedInteger
 
 extension UInt14 {
-    static let integerName: StaticString = "UInt14"
-    
-    init(unchecked value: Storage) {
+    public static let integerName: StaticString = "UInt14"
+
+    public init(unchecked value: Storage) {
         storage = value
     }
 }
@@ -213,15 +213,15 @@ extension UInt14 { //: CustomStringConvertible, CustomDebugStringConvertible {
 // MARK: - _MIDIUnsignedInteger Default Implementation
 
 extension UInt14 {
-    static func min<T: BinaryInteger>(as ofType: T.Type) -> T { 0 }
-    static func min<T: BinaryFloatingPoint>(as ofType: T.Type) -> T { 0 }
-    
-    static func max<T: BinaryInteger>(as ofType: T.Type) -> T {
+    public static func min<T: BinaryInteger>(as ofType: T.Type) -> T { 0 }
+    public static func min<T: BinaryFloatingPoint>(as ofType: T.Type) -> T { 0 }
+
+    public static func max<T: BinaryInteger>(as ofType: T.Type) -> T {
         (0 ..< bitWidth)
             .reduce(into: T()) { $0 |= (0b1 << $1) }
     }
     
-    static func max<T: BinaryFloatingPoint>(as ofType: T.Type) -> T {
+    public static func max<T: BinaryFloatingPoint>(as ofType: T.Type) -> T {
         T(max(as: Int.self))
     }
 }

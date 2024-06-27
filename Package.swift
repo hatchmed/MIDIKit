@@ -11,39 +11,44 @@ let package = Package(
     products: [
         .library(
             name: "MIDIKit",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKit"]
         ),
         .library(
             name: "MIDIKitCore",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKitCore"]
         ),
         .library(
             name: "MIDIKitIO",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKitIO"]
         ),
         .library(
             name: "MIDIKitControlSurfaces",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKitControlSurfaces"]
         ),
         .library(
             name: "MIDIKitSMF",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKitSMF"]
         ),
         .library(
             name: "MIDIKitSync",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKitSync"]
         ),
         .library(
             name: "MIDIKitUI",
-            type: .static,
+            type: .dynamic,
             targets: ["MIDIKitUI"]
-        )
+        ),
+        .library(
+          name: "MIDIKitInternals",
+          type: .dynamic,
+          targets: ["MIDIKitInternals"]
+        ),
     ],
     
     dependencies: [

@@ -48,7 +48,7 @@ public protocol MIDIUnsignedInteger: UnsignedInteger, Codable, Sendable
     static var max: Self { get }
 }
 
-protocol _MIDIUnsignedInteger: MIDIUnsignedInteger {
+public protocol _MIDIUnsignedInteger: MIDIUnsignedInteger {
     /// Internal: Type name for use in debugging and exceptions.
     static var integerName: StaticString { get }
     
@@ -88,7 +88,7 @@ extension _MIDIUnsignedInteger {
         self.init(clamped)
     }
     
-    public init<T: BinaryFloatingPoint>(_ source: T) {
+    public init<T>(_ source: T) where T: BinaryFloatingPoint {
         // it should be safe to cast as T.self since it's virtually impossible
         // that we will encounter a BinaryFloatingPoint type that cannot fit UInt4.max
         if source < Self.min(as: T.self) {
@@ -104,7 +104,7 @@ extension _MIDIUnsignedInteger {
         self.init(unchecked: Storage(source))
     }
     
-    public init?<T: BinaryFloatingPoint>(exactly source: T) {
+    public init?<T>(exactly source: T) where T: BinaryFloatingPoint {
         // it should be safe to cast as T.self since it's virtually impossible
         // that we will encounter a BinaryFloatingPoint type less than the
         // largest MIDIUnsignedInteger concrete type.
